@@ -7,17 +7,17 @@ function [cl,cd,cm,alpha,c] = callxfoilFCL(name,clst,iter,Re)
        fprintf(fid,'load \n');
        fprintf(fid,'%s\n',name);
        fprintf(fid,'\n');
-%        fprintf(fid,' GDES \n');
-%        fprintf(fid,' CADD \n');
-%        fprintf(fid,' 25 \n');
-%        fprintf(fid,' \n');
-%        fprintf(fid,' \n');
-%        fprintf(fid,' \n');
-%        fprintf(fid,' XB \n');
-%        fprintf(fid,' 0.9 \n');
-%        fprintf(fid,' 1 \n');
-%        fprintf(fid,' R \n');
-%        fprintf(fid,' 0.1 \n');
+       fprintf(fid,' GDES \n');
+       fprintf(fid,' CADD \n');
+       fprintf(fid,' 25 \n');
+       fprintf(fid,' \n');
+       fprintf(fid,' \n');
+       fprintf(fid,' \n');
+       fprintf(fid,' XB \n');
+       fprintf(fid,' 0.9 \n');
+       fprintf(fid,' 1 \n');
+       fprintf(fid,' R \n');
+       fprintf(fid,' 0.1 \n');
        fprintf(fid,'\n');
        fprintf(fid,'\n');
 %

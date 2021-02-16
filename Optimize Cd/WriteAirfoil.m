@@ -17,5 +17,5 @@ function WriteAirfoil(X,Y,name)
     for i = 1:length(XX)
         fprintf(fid,'%f %f \n',XX(i),YY(i));
     end
-   
+   fclose(fid);
 end

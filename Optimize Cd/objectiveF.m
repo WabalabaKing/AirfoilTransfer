@@ -1,6 +1,6 @@
 function [F,G] = objectiveF(p)
-    Re = 3000000;
-    clst  = 0.4478;
+    Re = 5000000;
+    clst  = .5;
     iter = 3000;
     increment = 0.1;
     

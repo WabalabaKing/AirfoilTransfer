@@ -2,7 +2,7 @@ close all
 clear all
 parameters=[0.1*ones(1,9),-0.1*ones(1,8)];
 Re = 3000000;
-clst  = 0.4478;
+clst  = 0.5;
 iter = 1500;
 UB = [0.3*ones(1,9),0.05*ones(1,8)];
 LB = [0*ones(1,9),-0.2*ones(1,8)];
