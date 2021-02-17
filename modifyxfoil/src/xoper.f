@@ -2432,7 +2432,7 @@ C     Converges to specified alpha.
 C-----------------------------------
       INCLUDE 'XFOIL.INC'
 	  DIMENSION TEM(N), TAM(N)
-      REAL MINF_CLM, MSQ_CLM, DCL,CLB
+      REAL MINF_CLM, MSQ_CLM, DCL,CLB,CMB,DCM
 C
 C---- calculate surface vorticity distributions for alpha = 0, 90 degrees
       IF(.NOT.LGAMU .OR. .NOT.LQAIJ) CALL GGCALC
@@ -2508,6 +2508,7 @@ C---- set final Mach, CL, Cp distributions, and hinge moment
       ELSE
        CALL CPCALC(N,QINV,QINF,MINF,CPI)
 	   CLB = CL
+	   CMB = CM
 	   OPEN(514,FILE = 'GAMA.DAT', STATUS = 'REPLACE')
 	   OPEN(516,FILE = 'X.DAT', STATUS = 'REPLACE')
 	   OPEN(517,FILE = 'Y.DAT', STATUS = 'REPLACE')
@@ -2520,6 +2521,7 @@ C---- set final Mach, CL, Cp distributions, and hinge moment
 	   CLOSE(516)
 	   CLOSE(517)
 	   OPEN(114,FILE = 'DCLDG.DAT', STATUS = 'REPLACE')
+	   OPEN(115,FILE = 'DCMDG.DAT', STATUS = 'REPLACE')
 	   DO 51 I = 1, N
 		 DO 52 J = 1, N
 	   	 TEM(J) = GAM(J)
@@ -2529,10 +2531,13 @@ C---- set final Mach, CL, Cp distributions, and hinge moment
          TAM(I) = -SINA*(GAMU(I,1)+0.001) + COSA*(GAMU(I,2)+0.001)
 		 CALL CLCALC(N,X,Y,TEM,TAM,ALFA,MINF,QINF, XCMREF,YCMREF,
      &            CL,CM,CDP, CL_ALF,CL_MSQ)
-		 BRU = (CL-CLB)/(TEM(I)-GAM(I))
-		 WRITE(114,*) BRU
+		 BRUL = (CL-CLB)/(TEM(I)-GAM(I))
+		 BRUM = (CM-CMB)/(TEM(I)-GAM(I))
+		 WRITE(114,*) BRUL
+		 WRITE(115,*) BRUM
    51  CONTINUE
 	   CLOSE(114)
+	   CLOSE(115)
       ENDIF
       IF(LFLAP) CALL MHINGE
 C

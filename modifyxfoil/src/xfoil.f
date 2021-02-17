@@ -1071,6 +1071,11 @@ C
      &            'Compressibility corrections invalid.'
       ENDIF
 C
+	  OPEN(912,FILE = 'CP.DAT', STATUS = 'REPLACE')
+	  DO I=1,N
+	    WRITE(912,*), CP(I)
+	  ENDDO
+	  CLOSE(912)
       RETURN
       END ! CPCALC
 
