@@ -1000,7 +1000,6 @@ C-    The unknowns are (dGamma)i and dPsio.
 C
 C------ calculate Psi and dPsi/dGamma array for current node
         CALL PSILIN(I,X(I),Y(I),NX(I),NY(I),PSI,PSI_N,.FALSE.,.TRUE.)
-C
         PSIINF = QINF*(COS(ALFA)*Y(I) - SIN(ALFA)*X(I))
 C
 C------ RES1 = PSI( 0) - PSIO
@@ -1107,11 +1106,6 @@ C---- set inviscid alpha=0,90 surface speeds for this geometry
 C
       LGAMU = .TRUE.
 C
-	  OPEN(512,FILE = 'AIJ.DAT', STATUS = 'REPLACE')
-	  DO I=1,N
-		WRITE(512,"(2000g22.14)") ( AIJ(I,J), J=1,N )
-	  ENDDO
-	  CLOSE(512)
       RETURN
       END
 
@@ -1594,7 +1588,11 @@ C
         QINV  (I) =  COSA*QINVU(I,1) + SINA*QINVU(I,2)
         QINV_A(I) = -SINA*QINVU(I,1) + COSA*QINVU(I,2)
     5 CONTINUE
-C
+	  OPEN(112,FILE = 'QINV.DAT', STATUS = 'REPLACE')
+	  DO I=1,N
+	    WRITE(112,*), QINV(I)
+	  ENDDO
+	  CLOSE(112)
       RETURN
       END
 
