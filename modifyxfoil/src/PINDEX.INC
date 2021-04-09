@@ -44,25 +44,25 @@ C
      & 'Mach      ',
      & 'Re        ',
      & 'Ncrit     ',
-     & 'Chinge    ', 
+     & 'Chinge    ',
      & 'Cpmin     ',
      & 'CDh       ',
      & 'Cmdot     '  /
       DATA CPOLFORM  /
-     & 'F7.3  ',   !    alpha
-     & 'F9.4  ',   !     CL  
-     & 'F10.5 ',   !     CD  
-     & 'F9.4  ',   !     CM  
-     & 'F10.5 ',   !     CDw 
-     & 'F10.5 ',   !     CDv 
-     & 'F10.5 ',   !     CDp 
+     & 'F7.3,X  ',   !    alpha
+     & 'F9.7,X  ',   !     CL
+     & 'F9.7,X ',   !     CD
+     & 'X,F9.7,X  ',   !     CM
+     & 'F10.7 ',   !     CDw
+     & 'F10.7 ',   !     CDv
+     & 'F10.7 ',   !     CDp
      & 'F8.4  ',   !     Mach
-     & 'E11.3 ',   !     Re  
+     & 'E11.3 ',   !     Re
      & 'F7.3  ',   !    Ncrit
      & 'F10.5 ',   !    Chinge
-     & 'F9.4  ',   !    Cpmin 
+     & 'F9.4  ',   !    Cpmin
      & 'F11.5 ',   !     CDh
-     & 'F9.5  ' /  !     Cmdot 
+     & 'F9.5  ' /  !     Cmdot
 
       DATA CPOLSNAME /
      & 'Xtrip',

@@ -1,8 +1,8 @@
 C***********************************************************************
 C    Module:  iopol.f
-C 
+C
 C    Copyright (C) 2000 Mark Drela, Harold Youngren
-C 
+C
 C    This program is free software; you can redistribute it and/or modify
 C    it under the terms of the GNU General Public License as published by
 C    the Free Software Foundation; either version 2 of the License, or
@@ -19,7 +19,7 @@ C    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 C***********************************************************************
 
       SUBROUTINE POLREAD(LU,FNPOL,ERROR,
-     &                   NAX,NA,CPOL, 
+     &                   NAX,NA,CPOL,
      &                   REYN1,MACH1,ACRIT,XTRIP,
      &                   PTRAT,ETAP,
      &                   NAME, IRETYP,IMATYP,
@@ -145,7 +145,7 @@ C------ truncate name line to eliminate elements #
 C
         IF(2*NBL .GT. ISX) THEN
          NBL = ISX/2
-         WRITE(*,*) 
+         WRITE(*,*)
      &   'POLREAD: Number of elements set to array limit', NBL
         ENDIF
         LDLAB = .FALSE.
@@ -197,7 +197,7 @@ C------ new style xtrip line
         KT = INDEX(LINE,'(top)')
         KB = INDEX(LINE,'(bottom)')
         KE = INDEX(LINE,'element ')
-C--- check for old style trip line 
+C--- check for old style trip line
         KS = INDEX(LINE,'(suc')
         KP = INDEX(LINE,'(pre')
 C
@@ -365,7 +365,7 @@ C------ Re was not in polar data... set using header info
         IF    (IRETYP.EQ.1) THEN
          CPOL(IA,IRE) = REYN1
         ELSEIF(IRETYP.EQ.2) THEN
-         CPOL(IA,IRE) = REYN1/SQRT(ACL) 
+         CPOL(IA,IRE) = REYN1/SQRT(ACL)
         ELSEIF(IRETYP.EQ.3) THEN
         CPOL(IA,IRE) = REYN1/ACL
         ENDIF
@@ -437,7 +437,7 @@ C
 C  Input:
 C     LU       logical unit to use for writing
 C     FNPOL    name of polar file to be read,
-C                if FNPOL(1:1).eq.' ', unit LU is assumed 
+C                if FNPOL(1:1).eq.' ', unit LU is assumed
 C                to be already open
 C     NAX      polar point array dimension
 C     ISX      airfoil side array dimension
@@ -563,7 +563,7 @@ C
          IF(KDOT.EQ.0) KDOT = LEN(CPOLFORM(IP))
          READ(CPOLFORM(IP)(2:KDOT-1),*,ERR=95) NFORM
 C
-         CALL STRIP(CPOLNAME(IP),NNAME) 
+         CALL STRIP(CPOLNAME(IP),NNAME)
          NBLANK = MAX( (NFORM-NNAME+2)/2 , 0 )
 C
          LINEL(KL+1+NBLANK:KL+NNAME+NBLANK) = CPOLNAME(IP)(1:NNAME)
@@ -585,14 +585,14 @@ C
          NBLANK = MAX( (NFORM-NNAME-2)/2 , 0 )
 C
          DO N = 1, NBL
-           LINEL(KL+1+NBLANK:KL+4+NNAME+NBLANK) = 
+           LINEL(KL+1+NBLANK:KL+4+NNAME+NBLANK) =
      &      'Top_' // CPOLSNAME(JP)(1:NNAME)
            KL = KL + NFORM
 C
            LINED(KD+2:KD+NFORM) = '--------------------------------'
            KD = KD + NFORM
 C
-           LINEL(KL+1+NBLANK:KL+4+NNAME+NBLANK) = 
+           LINEL(KL+1+NBLANK:KL+4+NNAME+NBLANK) =
      &      'Bot_' // CPOLSNAME(JP)(1:NNAME)
            KL = KL + NFORM
 C
@@ -601,9 +601,9 @@ C
          ENDDO
  32    CONTINUE
 C
-C 
 C
-C       LINEL = 
+C
+C       LINEL =
 C     & '  alpha     CL        CD       CDp       CM    Top_Xtr Bot_Xtr'
 CCC     1234567890123456789012345678901234567890123456789012345678901234567890
 C       K = 62
@@ -680,7 +680,7 @@ C......................................................................
      &'Mach = ',F7.3,5X,'Re = ',F9.3,' e 6',5X,'Ncrit = ',F7.3)
  9017 FORMAT(1X,
      &'pi_p = ',F7.4,5X,'eta_p = ',F9.4)
- 9100 FORMAT(1X,F7.3,F9.4,2F10.5,F9.4,2F8.4  ,  F9.5)
+ 9100 FORMAT(2X,  F7.6,5X, X, F7.6,X  2F7.6,X  F7.6,X  2F7.6,X  F7.6)
 CCC      3.453   1.3750   0.00921     0.500  -0.1450  0.9231  0.5382 -0.00942
 CCC      3.453   1.3750   0.00921     0.500  -0.1450  0.9231  0.5382
       END
@@ -700,7 +700,7 @@ C
 C  Input:
 C     LU      logical unit to use for reading
 C     FNREF   name of polar file to be read,
-C               if FNREF(1:1).eq.' ', unit LU is assumed 
+C               if FNREF(1:1).eq.' ', unit LU is assumed
 C               to be already open
 C     NFX     polar point array dimension
 C

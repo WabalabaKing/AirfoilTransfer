@@ -1,8 +1,8 @@
 C***********************************************************************
 C    Module:  xoper.f
-C 
-C    Copyright (C) 2000 Mark Drela 
-C 
+C
+C    Copyright (C) 2000 Mark Drela
+C
 C    This program is free software; you can redistribute it and/or modify
 C    it under the terms of the GNU General Public License as published by
 C    the Free Software Foundation; either version 2 of the License, or
@@ -419,7 +419,7 @@ C------- set inviscid solution only if point is not being recalculated
          IF(NINPUT.GE.1) THEN
           ADEG = RINPUT(1)
          ELSE
-          ADEG = ALFA/DTOR          
+          ADEG = ALFA/DTOR
           CALL ASKR('Enter angle of attack (deg)^',ADEG)
          ENDIF
          LALFA = .TRUE.
@@ -428,7 +428,7 @@ C------- set inviscid solution only if point is not being recalculated
          CALL SPECAL
          IF(ABS(ALFA-AWAKE) .GT. 1.0E-5) LWAKE  = .FALSE.
          IF(ABS(ALFA-AVISC) .GT. 1.0E-5) LVCONV = .FALSE.
-         IF(ABS(MINF-MVISC) .GT. 1.0E-5) LVCONV = .FALSE. 
+         IF(ABS(MINF-MVISC) .GT. 1.0E-5) LVCONV = .FALSE.
        ENDIF
 C
        IF(LVISC) CALL VISCAL(ITMAX)
@@ -610,7 +610,7 @@ C
          IF(DCL .NE. 0.0) NPOINT = INT((CL2-CL1)/DCL + 0.5) + 1
        ENDIF
 C
-C- - - - - - - - - - - - - - - - - - 
+C- - - - - - - - - - - - - - - - - -
 C
 C----- initialize plot
        CALL PLTINI
@@ -741,7 +741,7 @@ C-------- increment unconverged-point counter
            WRITE(*,1150) ISEQEX, ALAST, CLAST
  1150      FORMAT(
      & /' Sequence halted since previous',I3,' points did not converge'
-     & /' Last-converged  alpha =', F8.3, '    CL =', F10.5)
+     & /' Last-converged  alpha =', F8.8, '    CL =', F10.8)
            GO TO 116
           ENDIF
          ELSE
@@ -840,7 +840,7 @@ C
 C
         LU = 17
         CALL POLREAD(LU,FNAME,ERROR,
-     &             NAX,NAPOL(IP),CPOL(1,1,IP), 
+     &             NAX,NAPOL(IP),CPOL(1,1,IP),
      &             REYNP1(IP),MACHP1(IP),ACRITP(IP),XSTRIPP(1,IP),
      &             PTRATP(IP),ETAPP(IP),
      &             NAMEPOL(IP),IRETYP(IP),IMATYP(IP),
@@ -896,9 +896,9 @@ C
           CALL PLRSUM(IP,IP,IPACT)
           CALL STRIP(PFNAME(IP),NPF)
           IF(NPF.EQ.0) THEN
-           LINE = 'Enter polar output filename^' 
+           LINE = 'Enter polar output filename^'
           ELSE
-           LINE = 'Enter polar output filename [' 
+           LINE = 'Enter polar output filename ['
      &            // PFNAME(IP)(1:NPF) // ']^'
           ENDIF
           CALL ASKS(LINE,FNAME)
@@ -1354,7 +1354,7 @@ C------- check all alpha points in polar IP
          DO IA = 1, NAPOL(IP)
            ADIF = CPOL(IA,IAL,IP) - RINPUT(IREM+1)
            IF(ABS(ADIF) .LT. 0.0005) THEN
-C---------- alphas match within 3-digit print tolerance... 
+C---------- alphas match within 3-digit print tolerance...
 C-             remove point by pulling down all points above it
             DO JA = IA, NAPOL(IP)-1
               DO K = 1, IPTOT
@@ -1389,7 +1389,7 @@ C---------- go to next specified alpha to be removed
            ENDIF
          ENDDO
  55    CONTINUE
-C         
+C
 C--------------------------------------------------------
       ELSEIF(COMAND.EQ.'PNAM') THEN
        IF(NPOL.EQ.0) THEN
@@ -1561,7 +1561,7 @@ c       ENDIF
          dpr = 0.01
         endif
 
-C       
+C
        IF(SGN .GT. 0.0) THEN
         SPR = SLE + (S(1)-SLE)*XOC
        ELSE
@@ -1641,8 +1641,8 @@ C--------------------------------------------------------
        QQQ = SQRT(UUU**2 + VVV**2)
        CPP = 1.0 - (UUU**2 + VVV**2)
        WRITE(*,1800) UUU,VVV,QQQ,CPP
- 1800  FORMAT(/' u/Uinf = ', F8.4, '   v/Uinf = ', F8.4
-     &        /' q/Uinf = ', F8.4, '   Cp     = ', F8.4 /  )
+ 1800  FORMAT(/' u/Uinf = ', F8.8, '   v/Uinf = ', F8.8
+     &        /' q/Uinf = ', F8.8, '   Cp     = ', F8.8 /  )
 C
        COMOLD = COMAND
        ARGOLD = COMARG
@@ -1659,11 +1659,11 @@ C--------------------------------------------------------
       ELSEIF(COMAND.EQ.'CPMN') THEN
        IF(LVISC)THEN
         WRITE(*,1769) CPMNI, XCPMNI, CPMNV, XCPMNV
- 1769   FORMAT('  Minimum Inviscid Cp =',F8.4,'   at x =',F8.4
-     &       / '  Minimum Viscous  Cp =',F8.4,'   at x =',F8.4 )
+ 1769   FORMAT('  Minimum Inviscid Cp =',F8.8,'   at x =',F8.8
+     &       / '  Minimum Viscous  Cp =',F8.8,'   at x =',F8.8 )
        ELSE
         WRITE(*,1779) CPMNI, XCPMNI
- 1779   FORMAT('  Minimum Inviscid Cp =',F8.4,'   at x =',F8.4)
+ 1779   FORMAT('  Minimum Inviscid Cp =',F8.8,'   at x =',F8.8)
        ENDIF
 C
 C--------------------------------------------------------
@@ -1671,7 +1671,7 @@ C--------------------------------------------------------
        LCMINP = .NOT.LCMINP
        IF(LCMINP) THEN
         WRITE(*,*) 'Min Cp will be written to polar save file'
-       ELSE 
+       ELSE
         WRITE(*,*) 'Min Cp won''t be written to polar save file'
        ENDIF
 C
@@ -1685,7 +1685,7 @@ C--------------------------------------------------------
          WRITE(*,*) 'Note: Flap hinge location not defined'
          WRITE(*,*) '      Set it with FNEW command'
         ENDIF
-       ELSE 
+       ELSE
         WRITE(*,*) 'Hinge moment won''t be written to polar save file'
        ENDIF
 C
@@ -1726,7 +1726,7 @@ C--------------------------------------------------------
        IF(IDAMP.EQ.0) THEN
         IDAMP = 1
         WRITE(*,*) 'Modified amplification used'
-       ELSE 
+       ELSE
         IDAMP = 0
         WRITE(*,*) 'Original amplification used'
        ENDIF
@@ -1803,8 +1803,8 @@ C
 C
       RETURN
 C
- 1100 FORMAT(1X,'M  =' , F10.4, A)
- 1200 FORMAT(1X,'Re =' , G12.4, A)
+ 1100 FORMAT(1X,'M  =' , F10.8, A)
+ 1200 FORMAT(1X,'Re =' , G12.8, A)
       END ! MRSHOW
 
 
@@ -1812,15 +1812,15 @@ C
       SUBROUTINE NAMMOD(NAME,KDEL,KMOD0)
       CHARACTER*(*) NAME
 C-------------------------------------------
-C     Requests new modified NAME with 
+C     Requests new modified NAME with
 C     version number in brackets, e.g.
 C            NACA 0012  [5]
 C
 C     If bracketed index exists in NAME,
 C        it is incremented by KDEL.
-C     If no bracketed index exists, it 
+C     If no bracketed index exists, it
 C        is added with initial value KMOD0,
-C        unless KMOD0 is negative in which 
+C        unless KMOD0 is negative in which
 C        case nothing is added.
 C-------------------------------------------
       CHARACTER*48 NAMDEF
@@ -1831,7 +1831,7 @@ C
 C
       NAMDEF = NAME(1:NNAME)
 C
-      IF(KBRACK1.NE.0 .AND. 
+      IF(KBRACK1.NE.0 .AND.
      &   KBRACK2.NE.0 .AND. KBRACK2-KBRACK1.GT.1) THEN
 C----- brackets exist... get number, (go get user's input on READ error)
        READ(NAME(KBRACK1+1:KBRACK2-1),*,ERR=40) KMOD
@@ -1967,7 +1967,7 @@ C
  8500    FORMAT(1X, 4F9.5, 3F10.6, F10.3)
 C
         ELSE
-         WRITE(LINE,8510) 
+         WRITE(LINE,8510)
      &     S(I),DELIM,
      &     X(I),DELIM,
      &     Y(I),DELIM,
@@ -2000,7 +2000,7 @@ C
            WRITE(LU,8500) S(I), X(I), Y(I), UE, DS, TH, CF, HK
 C
           ELSE
-           WRITE(LINE,8510) 
+           WRITE(LINE,8510)
      &      S(I),DELIM,
      &      X(I),DELIM,
      &      Y(I),DELIM,
@@ -2091,7 +2091,7 @@ C
          WRITE(LU,8500) X(I), CPCOM
  8500    FORMAT(1X,2F11.5)
         ELSE
-         WRITE(LINE,8510) 
+         WRITE(LINE,8510)
      &    X(I) , DELIM,
      &    CPCOM
  8510    FORMAT(1X,2(F11.5,A))
@@ -2123,8 +2123,8 @@ C
 C------ find top and bottom y at hinge x location
         TOPS = XOF
         BOTS = S(N) - XOF
-        CALL SINVRT(TOPS,XOF,X,XP,S,N)      
-        CALL SINVRT(BOTS,XOF,X,XP,S,N)      
+        CALL SINVRT(TOPS,XOF,X,XP,S,N)
+        CALL SINVRT(BOTS,XOF,X,XP,S,N)
 C
       ENDIF
 C
@@ -2543,8 +2543,8 @@ C	   CLOSE(115)
 C
       RETURN
       END ! SPECAL
- 
- 
+
+
       SUBROUTINE SPECCL
 C-----------------------------------------
 C     Converges to specified inviscid CL.
@@ -2726,9 +2726,9 @@ C------ set updated CL,CD
         CALL CDCALC
 C
 C------ display changes and test for convergence
-        IF(RLX.LT.1.0) 
+        IF(RLX.LT.1.0)
      &   WRITE(*,2000) ITER, RMSBL, RMXBL, VMXBL,IMXBL,ISMXBL,RLX
-        IF(RLX.EQ.1.0) 
+        IF(RLX.EQ.1.0)
      &   WRITE(*,2010) ITER, RMSBL, RMXBL, VMXBL,IMXBL,ISMXBL
          CDP = CD - CDF
          WRITE(*,2020) ALFA/DTOR, CL, CM, CD, CDF, CDP
@@ -2755,16 +2755,16 @@ C....................................................................
  2010   FORMAT
      &   (/1X,I3,'   rms: ',E10.4,'   max: ',E10.4,3X,A1,' at ',I4,I3)
  2020   FORMAT
-     &   ( 1X,3X,'   a =', F7.3,'      CL =',F8.4  /
-     &     1X,3X,'  Cm =', F8.4, '     CD =',F9.5,
-     &           '   =>   CDf =',F9.5,'    CDp =',F9.5)
+     &   ( 1X,3X,'   a =', F7.8,'      CL =',F8.8  /
+     &     1X,3X,'  Cm =', F8.8, '     CD =',F9.8,
+     &           '   =>   CDf =',F9.8,'    CDp =',F9.8)
       END ! VISCAL
 
 
       subroutine dcpout
       include 'XFOIL.INC'
 c
-c     Computes and writes upper and lower-surface 
+c     Computes and writes upper and lower-surface
 c     Cp values at two specified x locations
 c
 c
@@ -2800,11 +2800,11 @@ c
       cpl2 = seval(sl2,cpv,w1,s,n)
       cpu2 = seval(su2,cpv,w1,s,n)
 c
-      write(lu,1200) alfa/dtor, cl, 
+      write(lu,1200) alfa/dtor, cl,
      &               cpl1, cpu1, cpl1-cpu1,
      &               cpl2, cpu2, cpl2-cpu2
 
- 1200 format(1x, f7.3, f9.4, 8f10.5)
+ 1200 format(1x, f7.8, f9.8, 8f10.8)
 c
       close(lu)
 c

@@ -1,8 +1,8 @@
 C***********************************************************************
 C    Module:  xpol.f
-C 
-C    Copyright (C) 2000 Mark Drela 
-C 
+C
+C    Copyright (C) 2000 Mark Drela
+C
 C    This program is free software; you can redistribute it and/or modify
 C    it under the terms of the GNU General Public License as published by
 C    the Free Software Foundation; either version 2 of the License, or
@@ -81,7 +81,7 @@ C
        ENDIF
 C
  20    CONTINUE
-       WRITE(*,*) 
+       WRITE(*,*)
        WRITE(*,*) 'Setting current parameters to those of stored polar'
 C
        NAME = NAMEPOL(IP)
@@ -175,11 +175,11 @@ C
 C--------------------------------------------------------------
 C     Checks or initializes a polar save file.
 C
-C     If file PFNAME(IP) exists, it is checked for consistency 
+C     If file PFNAME(IP) exists, it is checked for consistency
 C        with current parameters.  Polar saving is enabled
 C        only if file parameters match current parameters.
 C
-C     If file PFNAME(IP) doesn't exist, a new one is set up by 
+C     If file PFNAME(IP) doesn't exist, a new one is set up by
 C        writing a header to it, and polar saving is enabled.
 C--------------------------------------------------------------
       INCLUDE 'XFOIL.INC'
@@ -225,7 +225,7 @@ C
 C---- try reading the polar file to see if it exists
       OPEN(LU,FILE=FNAME,STATUS='OLD',ERR=60)
       CALL POLREAD(LU,' ',ERROR,
-     &             NAX,NAPOL(IP),CPOL(1,1,IP), 
+     &             NAX,NAPOL(IP),CPOL(1,1,IP),
      &             REYNP1(IP),MACHP1(IP),ACRITP(IP),XSTRIPP(1,IP),
      &             PTRATP(IP),ETAPP(IP),
      &             NAMEPOL(IP),IRETYP(IP),IMATYP(IP),
@@ -374,11 +374,11 @@ C..........................................
 C--------------------------------------------------------------
 C     Checks or initializes a polar dump file.
 C
-C     If file PFNAMX(IP) exists, it is checked for consistency 
+C     If file PFNAMX(IP) exists, it is checked for consistency
 C        with current parameters.  Polar dumping is enabled
 C        only if file parameters match current parameters.
 C
-C     If file PFNAMX(IP) doesn't exist, a new one is set up by 
+C     If file PFNAMX(IP) doesn't exist, a new one is set up by
 C        writing a header to it, and polar dumping is enabled.
 C--------------------------------------------------------------
       INCLUDE 'XFOIL.INC'
@@ -537,7 +537,7 @@ C..........................................
       LOGICAL ERROR
 C
 cc      WRITE(*,1000) CL, CD, CM
-cc 1000 FORMAT(/' CL =', F7.3, '    Cd =', F9.5, '    Cm =', F8.4)
+cc 1000 FORMAT(/' CL =', F8.7, '    Cd =', F8.7, '    Cm =', F8.7)
 C
 C---- add point to storage arrays
       IF(IP.EQ.0) THEN
@@ -631,7 +631,7 @@ ccc      CALL PLRSRT(IP,IDSORT)
 C
       RETURN
       END ! PLRADD
- 
+
 
       SUBROUTINE PLXADD(LU,IP)
       INCLUDE 'XFOIL.INC'
@@ -783,11 +783,11 @@ C
         ENDIF
 C
         CALL STRIP(PFNAME(IP),NPF)
-        WRITE(*,1200) CACC, IP, NAMEPOL(IP), 
+        WRITE(*,1200) CACC, IP, NAMEPOL(IP),
      &                RMAN, IEXP, CLTYP(IRET), MACHP1(IP), CLTYP(IMAT),
      &                ACRITP(IP), XSTRIPP(1,IP), XSTRIPP(2,IP),
      &                CFIL,PFNAME(IP)(1:NPF)
- 1200   FORMAT(1X,A1,I3,2X, A24, F7.3,'e',I1,A5, F7.3,A5, 
+ 1200   FORMAT(1X,A1,I3,2X, A24, F7.3,'e',I1,A5, F7.3,A5,
      &            F7.2, 2F8.3, 2X, A1, 1X, A)
       ENDDO
 C
@@ -941,5 +941,3 @@ C
 C
  90   RETURN
       END
-
-

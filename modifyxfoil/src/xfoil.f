@@ -1,8 +1,8 @@
 C***********************************************************************
 C    Module:  xfoil.f
-C 
-C    Copyright (C) 2000 Mark Drela 
-C 
+C
+C    Copyright (C) 2000 Mark Drela
+C
 C    This program is free software; you can redistribute it and/or modify
 C    it under the terms of the GNU General Public License as published by
 C    the Free Software Foundation; either version 2 of the License, or
@@ -40,7 +40,7 @@ C
      &  /' ==================================================='
      &  /'  XFOIL Version', F5.2
      &  /'  Copyright (C) 2000   Mark Drela, Harold Youngren'
-     & //'  This software comes with ABSOLUTELY NO WARRANTY,' 
+     & //'  This software comes with ABSOLUTELY NO WARRANTY,'
      &  /'    subject to the GNU General Public License.'
      & //'  Caveat computor'
      &  /' ===================================================')
@@ -94,7 +94,7 @@ C
      &  /'   NORM    Buffer airfoil normalization toggle'
      &  /'   HALF    Halve the number of points in buffer airfoil'
      &  /'   XYCM rr Change CM reference location, currently ',2F8.5
-     & //'   BEND    Display structural properties of current airfoil' 
+     & //'   BEND    Display structural properties of current airfoil'
      & //'   PCOP    Set current-airfoil panel nodes directly',
      &                ' from buffer airfoil points'
      &  /'   PANE    Set current-airfoil panel nodes (',I4,' )',
@@ -380,7 +380,7 @@ C
  1000 FORMAT(A)
       END ! XFOIL
 
- 
+
       SUBROUTINE INIT
 C---------------------------------------------------
 C     Variable initialization/default routine.
@@ -598,15 +598,15 @@ C---- axis limits and annotation deltas for polar plot
       CPOLPLF(1,ICD) = 0.0
       CPOLPLF(2,ICD) = 0.04
       CPOLPLF(3,ICD) = 0.01
-C        
+C
       CPOLPLF(1,ICL) = 0.
       CPOLPLF(2,ICL) = 1.5
       CPOLPLF(3,ICL) = 0.5
-C        
+C
       CPOLPLF(1,ICM) = -0.25
       CPOLPLF(2,ICM) =  0.0
       CPOLPLF(3,ICM) =  0.05
-C        
+C
       CPOLPLF(1,IAL) = -4.0
       CPOLPLF(2,IAL) = 10.0
       CPOLPLF(3,IAL) =  2.0
@@ -703,8 +703,8 @@ C---- Plotting flag
       IDEV = 1   ! X11 window only
 c     IDEV = 2   ! B&W PostScript output file only (no color)
 c     IDEV = 3   ! both X11 and B&W PostScript file
-c     IDEV = 4   ! Color PostScript output file only 
-c     IDEV = 5   ! both X11 and Color PostScript file 
+c     IDEV = 4   ! Color PostScript output file only
+c     IDEV = 5   ! both X11 and Color PostScript file
 C
 C---- Re-plotting flag (for hardcopy)
       IDEVRP = 2   ! B&W PostScript
@@ -853,7 +853,7 @@ C
       END ! MRCL
 
 
- 
+
       SUBROUTINE GETDEF(LU,FILNAM,LASK)
       CHARACTER*(*) FILNAM
       LOGICAL LASK
@@ -881,11 +881,11 @@ C
       CLMIN = CPOLPLF(1,ICL)
       CLMAX = CPOLPLF(2,ICL)
       CLDEL = CPOLPLF(3,ICL)
-C                 
+C
       CDMIN = CPOLPLF(1,ICD)
       CDMAX = CPOLPLF(2,ICD)
       CDDEL = CPOLPLF(3,ICD)
-C                 
+C
       ALMIN = CPOLPLF(1,IAL)
       ALMAX = CPOLPLF(2,IAL)
       ALDEL = CPOLPLF(3,IAL)
@@ -893,7 +893,7 @@ C
       CMMIN = CPOLPLF(1,ICM)
       CMMAX = CPOLPLF(2,ICM)
       CMDEL = CPOLPLF(3,ICM)
-C                 
+C
 C---- default paneling parameters (viscous)
       READ(LU,*,ERR=80) NPAN, CVPAR, CTERAT, CTRRAT
       READ(LU,*,ERR=80) XSREF1, XSREF2, XPREF1, XPREF2
@@ -914,7 +914,7 @@ C
 C---- airfoil x-offset and scale factor in Cp vs x plot, BL profile weight
       READ(LU,*,ERR=80) XOFAIR, FACAIR, UPRWT
 C
-C---- polar plot CL,CD,alpha,CM  min,max,delta 
+C---- polar plot CL,CD,alpha,CM  min,max,delta
       READ(LU,*,ERR=80) (CPOLPLF(K,ICL), K=1, 3)
       READ(LU,*,ERR=80) (CPOLPLF(K,ICD), K=1, 3)
       READ(LU,*,ERR=80) (CPOLPLF(K,IAL), K=1, 3)
@@ -957,7 +957,7 @@ C
       END ! GETDEF
 
 
- 
+
       SUBROUTINE WRTDEF(LU)
 C------------------------------------------
 C     Writes default parameters to unit LU
@@ -986,7 +986,7 @@ C
 C---- x-offset and scale factor for airfoil on Cp vs x plot
       WRITE(LU,1050) XOFAIR, FACAIR, UPRWT
 C
-C---- polar plot CL,CD,alpha,CM  min,max,delta 
+C---- polar plot CL,CD,alpha,CM  min,max,delta
       WRITE(LU,1061) (CPOLPLF(K,ICL), K=1, 3)
       WRITE(LU,1062) (CPOLPLF(K,ICD), K=1, 3)
       WRITE(LU,1063) (CPOLPLF(K,IAL), K=1, 3)
@@ -1006,10 +1006,10 @@ C...............................................
  1034 FORMAT(1X,L2,7X,L2,7X,9X , 9X ,' | Lcolor  Lcursor'              )
  1040 FORMAT(1X,F9.4 ,F9.4,F9.4, 9X ,' | CPmax   CPmin   CPdel'        )
  1050 FORMAT(1X,F9.4 ,F9.4,F9.4, 9X ,' | XoffAir ScalAir BLUwt'        )
- 1061 FORMAT(1X,F9.4 ,F9.4,F9.4, 9X ,' | CLmin   CLmax   CLdel'        )
- 1062 FORMAT(1X,F9.4 ,F9.4,F9.4, 9X ,' | CDmin   CDmax   CDdel'        )
+ 1061 FORMAT(1X,F9.8 ,F9.8,F9.8, 9X ,' | CLmin   CLmax   CLdel'        )
+ 1062 FORMAT(1X,F9.8 ,F9.8,F9.8, 9X ,' | CDmin   CDmax   CDdel'        )
  1063 FORMAT(1X,F9.4 ,F9.4,F9.4, 9X ,' | ALmin   ALmax   ALdel'        )
- 1064 FORMAT(1X,F9.4 ,F9.4,F9.4, 9X ,' | CMmin   CMmax   CMdel'        )
+ 1064 FORMAT(1X,F9.8 ,F9.8,F9.8, 9X ,' | CMmin   CMmax   CMdel'        )
  1071 FORMAT(1X,I3,6X,F9.4,F9.4, 9X ,' | MAtype  Mach    Vaccel'       )
  1072 FORMAT(1X,I3,6X,F9.4,F9.4, 9X ,' | REtype  Re/10^6 Ncrit'        )
  1080 FORMAT(1X,F9.4 ,F9.4, 9X , 9X ,' | XtripT  XtripB'               )
@@ -1074,8 +1074,8 @@ C
       RETURN
       END ! CPCALC
 
- 
-      SUBROUTINE CLCALC(N,X,Y,GAM,GAM_A,ALFA,MINF,QINF, 
+
+      SUBROUTINE CLCALC(N,X,Y,GAM,GAM_A,ALFA,MINF,QINF,
      &                  XREF,YREF,
      &                  CL,CM,CDP, CL_ALF,CL_MSQ)
 C-----------------------------------------------------------
@@ -1311,10 +1311,10 @@ C...............................................................
       END ! LOAD
 
 
- 
+
       SUBROUTINE SAVE(IFTYP,FNAME1)
 C--------------------------------
-C     Writes out current airfoil 
+C     Writes out current airfoil
 C--------------------------------
       INCLUDE 'XFOIL.INC'
       CHARACTER*(*) FNAME1
@@ -1385,7 +1385,7 @@ C----- write out in counterclockwise order (same as internal XFOIL order)
 C
       IF(IFTYP.EQ.-1) THEN
        DO I = IBEG, IEND, INCR
-         WRITE(LU,1400) INT(X(I)+SIGN(0.5,X(I))), 
+         WRITE(LU,1400) INT(X(I)+SIGN(0.5,X(I))),
      &                  INT(Y(I)+SIGN(0.5,Y(I)))
        ENDDO
 C
@@ -1419,7 +1419,7 @@ C
 
       SUBROUTINE MSAVE(FNAME1)
 C------------------------------------------
-C     Writes out current airfoil as one 
+C     Writes out current airfoil as one
 C     element in a multielement MSES file.
 C------------------------------------------
       INCLUDE 'XFOIL.INC'
@@ -1534,7 +1534,7 @@ C
       END ! MSAVE
 
 
- 
+
       SUBROUTINE ROTATE(X,Y,N,ALFA)
       DIMENSION X(N), Y(N)
 C
@@ -1614,7 +1614,7 @@ C
 C---------------------------------------------------
 C     Set paneling distribution from buffer airfoil
 C     geometry, thus creating current airfoil.
-C 
+C
 C     If REFINE=True, bunch points at x=XSREF on
 C     top side and at x=XPREF on bottom side
 C     by setting a fictitious local curvature of
@@ -1711,7 +1711,7 @@ C
 CCC      CALL ASKR('Enter curvature smoothing length/c^',SMOOL)
 CCC      SMOOL = 0.010
 C
-C---- set smoothing length = 1 / averaged LE curvature, but 
+C---- set smoothing length = 1 / averaged LE curvature, but
 C-    no more than 5% of chord and no less than 1/4 average panel spacing
       SMOOL = MAX( 1.0/MAX(CVAVG,20.0) , 0.25 /FLOAT(NPAN/2) )
 C
@@ -1823,7 +1823,7 @@ C---- spline curvature array
       CALL SEGSPL(W5,W6,SB,NB)
 C
 C---- Set initial guess for node positions uniform in s.
-C     More nodes than specified (by factor of IPFAC) are 
+C     More nodes than specified (by factor of IPFAC) are
 C     temporarily used  for more reliable convergence.
       NN = IPFAC*(N-1)+1
 C
@@ -2269,7 +2269,7 @@ C
 
       SUBROUTINE TECALC
 C-------------------------------------------
-C     Calculates total and projected TE gap 
+C     Calculates total and projected TE gap
 C     areas and TE panel strengths.
 C-------------------------------------------
       INCLUDE 'XFOIL.INC'
@@ -2306,7 +2306,7 @@ C
 C
       RETURN
       END ! TECALC
- 
+
 
 
       SUBROUTINE INTE
@@ -2317,7 +2317,7 @@ C-----------------------------------------------------------
       INCLUDE 'XFOIL.INC'
       CHARACTER*2 CAIR
       INTEGER NINT(2)
-      REAL SINT(IBX,2),  
+      REAL SINT(IBX,2),
      &     XINT(IBX,2), XPINT(IBX,2),
      &     YINT(IBX,2), YPINT(IBX,2),
      &     SLEINT(2)
@@ -2405,7 +2405,7 @@ C
      &              YINT(1,K),YPINT(1,K),SINT(1,K),NINT(K))
  40   CONTINUE
 C
-      WRITE(*,*) 
+      WRITE(*,*)
       WRITE(*,*) 'airfoil "0":  ', NAMEINT(1)
       WRITE(*,*) 'airfoil "1":  ', NAMEINT(2)
       FRAC = 0.5
@@ -2449,7 +2449,7 @@ C-----------------------------------------------------------
       INCLUDE 'XFOIL.INC'
       CHARACTER*2 CAIR
       INTEGER NINT(2)
-      REAL SINT(IBX,2),  
+      REAL SINT(IBX,2),
      &     XINT(IBX,2), XPINT(IBX,2),
      &     YINT(IBX,2), YPINT(IBX,2),
      &     SLEINT(2)
@@ -2540,7 +2540,7 @@ C
      &              YINT(1,K),YPINT(1,K),SINT(1,K),NINT(K))
  40   CONTINUE
 C
-      WRITE(*,*) 
+      WRITE(*,*)
       WRITE(*,*) 'airfoil "0":  ', NAMEINT(1)
       WRITE(*,*) 'airfoil "1":  ', NAMEINT(2)
       FRAC = 0.5
@@ -2574,7 +2574,3 @@ C
       WRITE(*,*) 'Invalid response.  No action taken.'
       RETURN
       END ! INTX
-
-
-
-
