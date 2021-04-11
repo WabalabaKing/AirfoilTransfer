@@ -12,8 +12,19 @@ fid = fopen('xfoil_input.txt','w+');
        fprintf(fid,'load \n');
        fprintf(fid,'%s\n',name);
        fprintf(fid,'\n');
+       fprintf(fid,'PPAR\n');
+       fprintf(fid,'N\n');
+       fprintf(fid,'%i\n',NN);
+       fprintf(fid,'\n');
+       fprintf(fid,'\n');
        fprintf(fid,'PANE');
        fprintf(fid,'\n');
+       fprintf(fid,'\n');
+       fprintf(fid,'PSAVE\n');
+       fprintf(fid,'tempAir.txt\n');
+       fprintf(fid,'\n');
+       fprintf(fid,'\n');
+       
 %
        fprintf(fid,'OPER \n');
        if viscous ==1
@@ -35,7 +46,7 @@ fid = fopen('xfoil_input.txt','w+');
             fprintf(fid,'%s \n',CFDump);   
        end
        fclose(fid);
-       comand = 'xfoil.exe < xfoil_input.txt ';
+       comand = 'xfoil< xfoil_input.txt ';
        system(comand);
 %%Now xfoil finished running, retreive useful data
 
@@ -56,7 +67,7 @@ cm = cm(1,1);
 delete('OUTPUT.txt');
 %This Gives more panel based force/load property
 fidCP = fopen(CPDump);
-       dBCp = textscan(fidCP,'%f %f %f','HeaderLines',3,...                 
+       dBCp = textscan(fidCP,'%f %f ','HeaderLines',1,...                 
                             'CollectOutput',1,...
                             'Delimiter','');
 fclose(fidCP);
@@ -68,12 +79,21 @@ fidCF = fopen(CFDump);
 fclose(fidCF); 
 end
 %start to load useful data;
-CP = dBCp{1,1}(:,3);
-X = dBCp{1,1}(:,1);
-Y = dBCp{1,1}(:,2);
+CP = dBCp{1,1}(:,2);
+fidA = fopen('tempAir.txt');
+ Coord = textscan(fidA,'%f %f ','HeaderLines',0,...                 
+                            'CollectOutput',1,...
+                            'Delimiter','');
+fclose(fidA);
+X = Coord{1,1}(:,1);
+Y = Coord{1,1}(:,2);
 if viscous ==1
 CF = dBCf{1,1}(:,7);
 S = dBCf{1,1}(:,1);
+ThetaBL = 
+ThetaBL = dBCf{1:1}(:,6);
+Dstar = dBCf{1:1}(:,5);
+Ue = dBCf{1:1}(:,4);
 end
 % start calculating normal and tangential forces at each panel
 %%

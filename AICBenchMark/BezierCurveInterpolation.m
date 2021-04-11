@@ -4,7 +4,7 @@ C = textscan(id,formatSpec);
 fclose(id);
 XB = C{:,1};
 YB = C{:,2};
-n = 10;
+n = 20;
  xu= XB(1:length(XB)/2);
  xl = flip(XB(length(XB)/2+1:end));
  yu= YB(1:length(YB)/2);

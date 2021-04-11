@@ -1,4 +1,4 @@
-function [AIC,b,gAm,DCP] = getAIC(al,X,Y,marker)
+function [AIC,b,gAm,DCP,CP] = getAIC(al,X,Y,marker,h)
 N = length(X)-1;
 X = flip(X);
 Y = flip(Y);
@@ -12,7 +12,7 @@ b = zeros(N+1,1);
 bi = zeros(N+1,1);
 norms = zeros(N,2);
 tans = zeros(N,2);
-qv =flip(load('QV.DAT'));
+gam =flip(load('GAMA.DAT'));
 for i = 1:N
     xi = X(i);
     xii = X(i+1);
@@ -55,7 +55,7 @@ end
     AIC(N+1,N+1) = 1;
     b(N+1) = 0;
     theta = [theta;atan2(Y(1)-Y(N+1),X(1)-X(N+1))];
-    bi =AIC*qv;
+    bi =b;
 %     gam = load("GAMA.DAT");
 %     gam = [gam;-gam(1)];
 temp =  atan2(Y(1)-Y(N+1),X(1)-X(N+1));
@@ -72,13 +72,13 @@ for i=1:N+1
     vtan(i) = vtan(i) + dot(Qinf,tans(i,:));
     Cp(i) = 1-(vtan(i)/Vinf)^2;
 end
-Cp2 = 1-gAm.^2;
 %%
+CP = Cp;
 dCp = Cp;
 DCP = zeros(length(Cp));
 for k = 1:length(gAm)
     gami = gAm;
-    gami(k) = gAm(k)+1e-3;
+    gami(k) = gAm(k)+h;
     vtan = zeros(N,1);
     for i=1:N
     for j=1:N+1
@@ -87,7 +87,7 @@ for k = 1:length(gAm)
     vtan(i) = vtan(i) + dot(Qinf,tans(i,:));
     dCp(i) = 1-(vtan(i)/Vinf)^2;
     end
-    DCP(:,k) = (dCp-Cp)/1e-3;
+    DCP(:,k) = (dCp-Cp)/h;
     
 end
 
