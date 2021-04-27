@@ -1,11 +1,11 @@
-function dRdx = dResdx(XX,YY,a,p,h,gam,b,AIC)
+function dRdx = dResdx(XX,YY,a,p,h,gam,b,AIC,dmdx)
 %p is the FFD param variable,
 %h is the perturb step size,
 p_pert_mat = p;
 for k = 2:length(p)
 p_pert_mat = [p_pert_mat;p];
 end
-p_pert_mat = p_pert_mat+diag([-h*ones(1,length(p)/2),h*ones(1,length(p)/2)]);
+p_pert_mat = p_pert_mat+diag([-h*ones(1,(length(p))/2),h*ones(1,(length(p))/2)]);
 per = [-h*ones(1,length(p)/2),h*ones(1,length(p)/2)];
  Residual_unpert = AIC(1:end,1:end)*gam(1:end)-b(1:end);
  
@@ -15,7 +15,7 @@ per = [-h*ones(1,length(p)/2),h*ones(1,length(p)/2)];
  
     function Rper = Residual_pert(XX,YY,pe,gam,a,b,h)
        [XXn,YYn] = ffd_opt(pe,'sth',0);
-       [AICnew,bnew,gnew,z] = getAIC(a,XXn,YYn,0,h);
+       [AICnew,bnew,gnew,z] = getAIC(a,XXn,YYn,0,h,dmdx);
        Rper = AICnew(1:end,1:end)*gam(1:end)-bnew(1:end);
 %        check  = AICnew(2:end,2:end)*gnew(2:end)-bnew(2:end);
     end

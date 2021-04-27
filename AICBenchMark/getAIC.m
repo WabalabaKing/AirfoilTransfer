@@ -1,4 +1,4 @@
-function [AIC,b,gAm,DCP,CP] = getAIC(al,X,Y,marker,h)
+function [AIC,b,gAm,DCP,CP] = getAIC(al,X,Y,marker,h,dmdx)
 N = length(X)-1;
 X = flip(X);
 Y = flip(Y);
@@ -13,6 +13,7 @@ bi = zeros(N+1,1);
 norms = zeros(N,2);
 tans = zeros(N,2);
 gam =flip(load('GAMA.DAT'));
+dmdx = flip(dmdx);
 for i = 1:N
     xi = X(i);
     xii = X(i+1);
@@ -55,7 +56,7 @@ end
     AIC(N+1,N+1) = 1;
     b(N+1) = 0;
     theta = [theta;atan2(Y(1)-Y(N+1),X(1)-X(N+1))];
-    bi =b;
+    bi =b+dmdx;
 %     gam = load("GAMA.DAT");
 %     gam = [gam;-gam(1)];
 temp =  atan2(Y(1)-Y(N+1),X(1)-X(N+1));

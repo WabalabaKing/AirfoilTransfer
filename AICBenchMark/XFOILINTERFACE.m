@@ -1,4 +1,4 @@
-function [cl,cd,cm,CY,CD,x,y,CP] = XFOILINTERFACE(NN,a,Re,viscous,iter,name)
+function [cl,cd,cm,CY,CD,x,y,CP,m] = XFOILINTERFACE(NN,a,Re,viscous,iter,name)
 %try to run xfoil 
 %first specify some input
 outp = "OUTPUT.txt"   ;   %this is where xfoil dumps CL,CD,CM etc;
@@ -90,11 +90,12 @@ Y = Coord{1,1}(:,2);
 if viscous ==1
 CF = dBCf{1,1}(:,7);
 S = dBCf{1,1}(:,1);
-ThetaBL = 
 ThetaBL = dBCf{1:1}(:,6);
 Dstar = dBCf{1:1}(:,5);
 Ue = dBCf{1:1}(:,4);
+m = Ue.*Dstar;
 end
+x = X;
 % start calculating normal and tangential forces at each panel
 %%
 x = [X;X(1)];

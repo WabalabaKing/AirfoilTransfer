@@ -2,7 +2,7 @@ function [XX,YY] = ffd_opt(p,name,wri)
 %formulate input
 %constraint fix leading edge node
 %constraint close geometry at trailing edge
-p = [p(1:20);p(21:40)];
+p = [p(1:20);p(21:39),p(20)-0.2];
 %formulate FFD into symbolic expression spline
 syms t
 xu = p(1,:);
