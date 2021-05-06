@@ -2,11 +2,11 @@ plop
 G 
  
 load 
-0012i.txt
+tempAir.txt
 
 PPAR
-N
-160
+t
+0.5 
 
 
 PANE
@@ -16,15 +16,19 @@ tempAir.txt
 
 
 OPER 
+a 
+0 
+
+OPER 
 visc 
 3000000 
 iter 
-5000
+1500
 pacc 
 OUTPUT.txt
 
 a 
-5 
+0 
 CPWR 
 DUMPCP.txt 
 DUMP 

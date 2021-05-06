@@ -13,8 +13,8 @@ fid = fopen('xfoil_input.txt','w+');
        fprintf(fid,'%s\n',name);
        fprintf(fid,'\n');
        fprintf(fid,'PPAR\n');
-       fprintf(fid,'N\n');
-       fprintf(fid,'%i\n',NN);
+       fprintf(fid,'t\n');
+       fprintf(fid,'0.5 \n');
        fprintf(fid,'\n');
        fprintf(fid,'\n');
        fprintf(fid,'PANE');
@@ -23,6 +23,10 @@ fid = fopen('xfoil_input.txt','w+');
        fprintf(fid,'PSAVE\n');
        fprintf(fid,'tempAir.txt\n');
        fprintf(fid,'\n');
+       fprintf(fid,'\n');
+       fprintf(fid,'OPER \n');
+       fprintf(fid,'a \n');
+       fprintf(fid,'%i \n',a);
        fprintf(fid,'\n');
        
 %

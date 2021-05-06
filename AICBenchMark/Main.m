@@ -1,7 +1,7 @@
 %Define the problem
 name = '0012b.txt';
 tic
-a = 8;
+a = 5;
 NN = 340;
 Re = 3000000;
 viscous = 1;
