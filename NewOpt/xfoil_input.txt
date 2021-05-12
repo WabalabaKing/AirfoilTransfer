@@ -2,14 +2,28 @@ plop
 G 
  
 load 
-tempAir.txt
+optimized.txt
+
+GDES
+CADD
+
+2
+
+exec
 
 PPAR
-t
+n
+160 
+p
 0.5 
+t
+0.6 
 
 
-PANE
+
+
+
+
 
 PSAVE
 tempAir.txt
@@ -21,14 +35,15 @@ a
 
 OPER 
 visc 
-3000000 
+1000000 
 iter 
-1500
+500
 pacc 
 OUTPUT.txt
 
 a 
 0 
+!
 CPWR 
 DUMPCP.txt 
 DUMP 

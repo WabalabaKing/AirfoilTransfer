@@ -12,12 +12,28 @@ fid = fopen('xfoil_input.txt','w+');
        fprintf(fid,'load \n');
        fprintf(fid,'%s\n',name);
        fprintf(fid,'\n');
+       fprintf(fid,'GDES\n');
+       fprintf(fid,'CADD\n');
+       fprintf(fid,'\n');
+       fprintf(fid,'2\n');
+       fprintf(fid,'\n');
+       fprintf(fid,'exec\n');       
+       fprintf(fid,'\n');
        fprintf(fid,'PPAR\n');
-       fprintf(fid,'t\n');
+       fprintf(fid,'n\n');
+       fprintf(fid,'%i \n',NN);
+       fprintf(fid,'p\n');
        fprintf(fid,'0.5 \n');
+       fprintf(fid,'t\n');
+       fprintf(fid,'0.6 \n'); 
        fprintf(fid,'\n');
        fprintf(fid,'\n');
-       fprintf(fid,'PANE');
+       fprintf(fid,'\n');
+%        fprintf(fid,'PANE\n');
+
+       fprintf(fid,'\n');
+       fprintf(fid,'\n');
+%        fprintf(fid,'PANE\n');
        fprintf(fid,'\n');
        fprintf(fid,'\n');
        fprintf(fid,'PSAVE\n');
@@ -42,7 +58,8 @@ fid = fopen('xfoil_input.txt','w+');
        fprintf(fid,'\n');
        fprintf(fid,'a \n');
        fprintf(fid,'%i \n',a);
-
+       fprintf(fid,'!\n');
+%                    fprintf(fid,'INIT \n');
        fprintf(fid,'CPWR \n');
        fprintf(fid,'%s \n',CPDump);
        if viscous ==1
@@ -50,7 +67,7 @@ fid = fopen('xfoil_input.txt','w+');
             fprintf(fid,'%s \n',CFDump);   
        end
        fclose(fid);
-       comand = 'xfoil.exe< xfoil_input.txt ';
+       comand = 'xfoil< xfoil_input.txt ';
        system(comand);
 %%Now xfoil finished running, retreive useful data
 
@@ -71,7 +88,7 @@ cm = cm(1,1);
 delete('OUTPUT.txt');
 %This Gives more panel based force/load property
 fidCP = fopen(CPDump);
-       dBCp = textscan(fidCP,'%f %f %f','HeaderLines',3,...                 
+       dBCp = textscan(fidCP,'%f %f %f','HeaderLines',1,...                 
                             'CollectOutput',1,...
                             'Delimiter','');
 fclose(fidCP);
@@ -83,7 +100,7 @@ fidCF = fopen(CFDump);
 fclose(fidCF); 
 end
 %start to load useful data;
-CP = dBCp{1,1}(:,3);
+CP = dBCp{1,1}(:,2);
 fidA = fopen('tempAir.txt');
  Coord = textscan(fidA,'%f %f ','HeaderLines',0,...                 
                             'CollectOutput',1,...
