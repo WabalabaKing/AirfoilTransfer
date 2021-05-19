@@ -4,25 +4,20 @@ G
 load 
 optimized.txt
 
-GDES
-CADD
-
-2
-
-exec
-
 PPAR
 n
 160 
 p
-0.5 
+0.7 
 t
-0.6 
+0.3 
 
 
 
+PANE
 
 
+PANE
 
 
 PSAVE

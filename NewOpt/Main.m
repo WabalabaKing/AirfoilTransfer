@@ -6,11 +6,13 @@ clst  = 0.25;
 iter = 500;
 % UB = [linspace(0.14,0.11,17),linspace(-0.07,-0.09,17)];
 % LB = [lnspace(0.07,0.09,17),linspace(-0.14,-0.11,17)];
-UB = [0.15*ones(1,17),-0.07*ones(1,17)];
-LB = [0.08*ones(1,17),-0.15*ones(1,17)];
+p = parameters;
+bo =  0.2*p(1);
+UB = [(p(1)+bo)*ones(1,17),(-p(1)+bo)*ones(1,17)];
+LB = [(p(1)-bo)*ones(1,17),(-p(1)-bo)*ones(1,17)];
 options = optimoptions(@fmincon, ...
-    'Display','iter','Algorithm','interior-point','SpecifyObjectiveGradient',true,...
-    'PlotFcn', {@optimplotfval},'FunctionTolerance',1e-4,'StepTolerance',1e-6);
+    'Display','iter','Algorithm','sqp','SpecifyObjectiveGradient',true,...
+    'PlotFcn', {@optimplotfval},'FunctionTolerance',1e-4,'StepTolerance',1e-4);
 
 [xopt,fopt] = fmincon('objectiveF',parameters,[],[],[],[],LB,UB,@nlcon,options);
 %%
