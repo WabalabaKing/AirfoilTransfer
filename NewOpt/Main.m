@@ -13,8 +13,10 @@ LB = [(p(1)-bo)*ones(1,17),(-p(1)-bo)*ones(1,17)];
 options = optimoptions(@fmincon, ...
     'Display','iter','Algorithm','sqp','SpecifyObjectiveGradient',true,...
     'PlotFcn', {@optimplotfval},'FunctionTolerance',1e-4,'StepTolerance',1e-4);
-
+diary optlog.txt
 [xopt,fopt] = fmincon('objectiveF',parameters,[],[],[],[],LB,UB,@nlcon,options);
+diary off
+
 %%
 [X,Y] = ffd_opt(xopt,'optimized.txt',1);
 a = 0;

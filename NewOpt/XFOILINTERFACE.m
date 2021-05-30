@@ -67,8 +67,8 @@ fid = fopen('xfoil_input.txt','w+');
             fprintf(fid,'%s \n',CFDump);   
        end
        fclose(fid);
-       comand = 'xfoil< xfoil_input.txt ';
-       system(comand);
+       comand = 'xfoil< xfoil_input.txt';
+       [st,co] = system(comand);
 %%Now xfoil finished running, retreive useful data
 
 %This gives conventional aerodynamic properties
@@ -141,6 +141,6 @@ x = x(1:end-1);
 y = y(1:end-1);
 CD = CDP+CDf;
 %Check total number to see if correct
-Lift = sum(CY)
-DragP = sum(CDP)
-DragF = sum(CDf)
+Lift = sum(CY);
+DragP = sum(CDP);
+DragF = sum(CDf);

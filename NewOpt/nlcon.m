@@ -15,6 +15,6 @@ try
 catch
     cd = 0.005;
 end
-c = [-max(T) + 0.115, cd-0.015]
+c = [-max(T) + 0.11, cd-0.015];
 ceq = [];
 end

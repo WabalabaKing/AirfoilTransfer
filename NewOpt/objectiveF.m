@@ -15,12 +15,12 @@ name = '0012.txt';
 NN = 160;
 [XX,YY] = ffd_opt(p,name,wri);
 [cl,cd,cm,CY,CD,x,y,CP,m] = XFOILINTERFACE(NN,a,Re,viscous,iter,name);
-F = (1-(cl/clst))^2*1e-2;
+F = (1-(cl/clst))^2*0.7e-1;
 if abs(cl-clst)>=0.001
 if FD ==1
  try
 [dcldx,dcmdx] = Grad(a,NN,Re,viscous,iter,h,x,m,p);
-G = ((2*(1-cl/clst)*-1/clst).*dcldx)*0.7e-1;
+G = ((2*(1-cl/clst)*-1/clst).*dcldx)*1e-2;
  catch
     G = zeros(1,34);
  end
@@ -32,7 +32,7 @@ elseif FD ==0
         [XXi,YYi] = ffd_opt(piter,'FD.txt',1);
         try
         [dcl,dcd,dcm,CY,CD,x,y,CP,dm] = XFOILINTERFACE(NN,a,Re,viscous,iter,'FD.txt');
-        G(i) = ((2*(1-cl/clst)*-1/clst)*((dcl-cl)/0.01))*1e-2;
+        G(i) = ((2*(1-cl/clst)*-1/clst)*((dcl-cl)/0.01))*0.7e-1;
         catch
             G(i) = 0;
         end
